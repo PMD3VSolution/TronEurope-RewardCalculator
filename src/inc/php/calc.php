@@ -83,5 +83,5 @@ $rewards=((($availible_trx+$votingrewards)/($srvotes+$votes))*$votes);
 //result('SR REWARDS',round($votingrewards,6).' TRX','PROD BLOCKS(6h)',$prodblk );
 //result('Rewards per Block:','32 TRX','total Block Rewards:',$availible_trx.' TRX');
 result('EST.REWARDS (EVERY 6H)',round($rewards,4).' TRX','EST.REWARDS (DAILY)',round($rewards*4,4).' TRX');
-result('EST.REWARDS (WEEKLY)',round($rewards*4*7,4).' TRX','EST.REWARDS (YEARLY)',round($rewards*4*7*365,4).' TRX');
+result('EST.REWARDS (WEEKLY)',round($rewards*4*7,4).' TRX','EST.REWARDS (YEARLY)',round($rewards*4*365,4).' TRX');
 ?>
