@@ -8,7 +8,7 @@ $curlconn = curl_init();
 // user values
 $address = 'TMEQ4hu7DtLTHPn6qPsYktk1QGdTbAyTEK';
 // rewardsquote 1 = 100%
-$rewardsfactor = 1;   
+$rewardsfactor = 1;
 // default values
 $starttimestamp = (round( microtime(true) * 1000)) - 21600000;
 $url[0] = 'https://api.tronscan.org/api/vote/current-cycle';
@@ -23,7 +23,8 @@ $page = 0;
 $i = 0;
 // procedure start
 foreach ($url as $call) {
-// export data
+
+// export data - sr Votes
 if ($i == 0){
 // parsing response into json
 $jresponse = json_decode(apiclient($url[$i],$curlconn),true);
@@ -35,6 +36,7 @@ foreach ($jresponse['candidates'] as $value) {
     }
 }
 
+// total votes
 else if ($i == 1){
 // parsing response into json
 $jresponse = json_decode(apiclient($url[$i],$curlconn),true);
@@ -43,7 +45,8 @@ $jresponse = json_decode(apiclient($url[$i],$curlconn),true);
         $totalvotes =  $totalvotes + $value['votes'];
     }
 }
-// extract data - block
+
+// extract data - block production
 else {
     while($timestamp > $starttimestamp){
         $urladdress=$url[$i].'?producer='.$address.'&sort=-number&start='.$page.'&limit=50';
@@ -68,7 +71,6 @@ else {
 }
 // close request to clear up some resources
 curl_close($curlconn);
-
 // calc trx - 32 TRX per block
 $availible_trx=(($prodblk)*32)*$rewardsfactor;
 // calc voting rewards
